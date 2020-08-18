@@ -29,16 +29,20 @@ def get_homework_statuses(current_timestamp):
         homework_statuses = requests.get(url, headers=headers, params=params)
         return homework_statuses.json()
     except Exception:
-        print("Что-то пошло не так")
+        print("Есть проблемы с запросом домашнего задания")
 
 
 def send_message(message):
     bot = telegram.Bot(token=TELEGRAM_TOKEN)
-    return bot.send_message(chat_id=CHAT_ID, text=message)
+    try:
+        return bot.send_message(chat_id=CHAT_ID, text=message)
+    except Exception:
+        print("Есть проблемы с ботом")
 
 
 def main():
-    current_timestamp = int(time.time())  # начальное значение timestamp
+    current_timestamp = 0
+    # current_timestamp = int(time.time())  # начальное значение timestamp
     while True:
         try:
             new_homework = get_homework_statuses(current_timestamp)
