@@ -15,9 +15,9 @@ bot = telegram.Bot(token=TELEGRAM_TOKEN)
 
 
 def parse_homework_status(homework):
-    if homework['homework_name'] is None or homework['status'] is None:
-        return f'Неверный ответ сервера'
     homework_name = homework.get('homework_name')
+    if homework.get('homework_name') is None or homework.get('status') is None:
+        return 'Неверный ответ сервера'
     if homework.get('status') != 'approved':
         verdict = 'К сожалению в работе нашлись ошибки.'
     else:
