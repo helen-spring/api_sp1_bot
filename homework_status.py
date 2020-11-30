@@ -19,7 +19,7 @@ def parse_homework_status(homework):
     if homework.get('homework_name') is None or homework.get('status') is None:
         return 'Неверный ответ сервера'
     if homework.get('status') != 'approved':
-        verdict = 'К сожалению в работе нашлись ошибки.'
+        verdict = 'К сожалению, в работе нашлись ошибки.'
     else:
         verdict = ('Ревьюеру всё понравилось, '
                    'можно приступать к следующему уроку.')
